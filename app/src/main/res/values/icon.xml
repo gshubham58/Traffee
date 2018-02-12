@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="payment">&#xf231;</string>
+    <string name="logout">&#xf191;</string>
+    <string name="scan">&#xf2d0;</string>
+    <string name="details">&#xf044;</string>
+    <string name="profile">&#xf007;</string>
+    <string name="reciepts">&#xf15b;</string>
+    <string name="pending">&#xf28b;</string>
+</resources>
