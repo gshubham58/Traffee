@@ -22,14 +22,20 @@
             android:fontFamily="@font/calligraphy"
             android:textSize="50dp" />
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:orientation="horizontal"
         android:id="@+id/l1"
-        android:paddingTop="20dp"
-        android:layout_below="@id/l0">
+        android:paddingTop="20dp">
 
 
         <TextView
@@ -39,6 +45,7 @@
             android:gravity="center"
             android:fontFamily="@font/fontawesome"
             android:text="@string/profile"
+            android:textColor="@color/white"
             android:textSize="50dp"
             android:layout_weight="2" />
         <TextView
@@ -48,6 +55,7 @@
             android:gravity="center"
             android:fontFamily="@font/fontawesome"
             android:text="@string/pending"
+            android:textColor="@color/white"
             android:textSize="50dp"
             android:layout_weight="2"/>
 
@@ -64,6 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="Profile"
+            android:textColor="@color/white"
             android:gravity="center"/>
 
         <TextView
@@ -71,6 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="Pending Fee"
+            android:textColor="@color/white"
             android:gravity="center"/>
     </LinearLayout>
     <LinearLayout
@@ -88,6 +98,7 @@
             android:gravity="center"
             android:fontFamily="@font/fontawesome"
             android:text="@string/reciepts"
+            android:textColor="@color/white"
             android:textSize="50dp"
             android:layout_weight="2"/>
         <TextView
@@ -97,6 +108,7 @@
             android:gravity="center"
             android:fontFamily="@font/fontawesome"
             android:text="@string/logout"
+            android:textColor="@color/white"
             android:textSize="50dp"
             android:layout_weight="2"/>
 
@@ -113,6 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="Reciepts"
+            android:textColor="@color/white"
             android:gravity="center"/>
 
         <TextView
@@ -120,6 +133,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="Logout"
+            android:textColor="@color/white"
             android:gravity="center"/>
     </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>
