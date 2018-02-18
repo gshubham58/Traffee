@@ -22,20 +22,35 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Register extends AppCompatActivity {
+    EditText password,mobile,engineno,userid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         Button b1=(Button) findViewById(R.id.btn_reg);
-        EditText userid=(EditText) findViewById(R.id.name);
-        EditText engineno=(EditText) findViewById(R.id.EngineNumber);
-        EditText mobile=(EditText) findViewById(R.id.MobileNumber);
-        EditText password=(EditText) findViewById(R.id.input_password);
+        userid=(EditText) findViewById(R.id.name);
+        engineno=(EditText) findViewById(R.id.EngineNumber);
+        mobile=(EditText) findViewById(R.id.regmobile);
+        password=(EditText) findViewById(R.id.reg_password);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(userid.length()==0)
+                {
+                    userid.requestFocus();
+                    userid.setError("FIELD CANNOT BE EMPTY");
+                }
+
+                String a,b,c,d,e;
+                a=userid.getText().toString();
+                b=password.getText().toString();
+                c= mobile.getText().toString();
+                d=engineno.getText().toString();
+
+                Log.e("value  ",a+b+c+d);
                 RequestQueue queue= Volley.newRequestQueue(Register.this);
-                String url="https://login-api-demo.herokuapp.com/getdetails/user=";
+                String url="https://login-api-demo.herokuapp.com/adduser/userid="+a+"&pwd="+b+"&mob="+c+"&engno="+d+"&type=user";
+                Log.e("hh  ",url);
                 final StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

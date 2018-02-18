@@ -33,16 +33,26 @@ public class Login extends AppCompatActivity {
         final ProgressBar p1=(ProgressBar)findViewById(R.id.progressBar);
         TextView reg=(TextView)findViewById(R.id.link_signup);
         Bundle bundle=getIntent().getExtras();
-        final String type=bundle.getString("type");
+        //final String type=bundle.getString("type");
         name=(EditText)findViewById(R.id.MobileNumber);
         pass=(EditText)findViewById(R.id.input_password);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //p1.setVisibility(View.VISIBLE);
-                Log.e("type",type);
+               // Log.e("type",type);
 //                Intent i=new Intent(getApplicationContext(),Pdashboard.class);
 //                startActivity(i);}
+                if(name.length()==0)
+                {
+                    name.requestFocus();
+                    name.setError("FIELD CANNOT BE EMPTY");
+                }
+                if(pass.length()==0)
+                {
+                    pass.requestFocus();
+                    pass.setError("FIELD CANNOT BE EMPTY");
+                }
                     RequestQueue queue = Volley.newRequestQueue(Login.this);
                     String url="https://login-api-demo.herokuapp.com/getdetails/user="+name.getText().toString();
                     StringRequest stringRequest = new StringRequest(Request.Method.GET, url,

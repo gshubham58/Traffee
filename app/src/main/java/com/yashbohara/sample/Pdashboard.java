@@ -66,7 +66,6 @@ public class Pdashboard extends AppCompatActivity {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             obj.compress(Bitmap.CompressFormat.JPEG, 100, stream);
             byteArray = stream.toByteArray();
- //Scan text in below code
 
 
             Vision.Builder visionBuilder = new Vision.Builder(
