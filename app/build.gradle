@@ -30,4 +30,5 @@ dependencies {
     compile 'commons-io:commons-io:2.5'
     compile 'com.android.volley:volley:1.0.0'
     implementation 'com.android.support:design:26.+'
+    implementation project(':sdkui')
 }
