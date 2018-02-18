@@ -55,7 +55,7 @@ public class Pdashboard extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
-
+//
 
         //SCAN STARTED
         scan.setOnClickListener(new View.OnClickListener() {
