@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "703254307190",
+    "firebase_url": "https://traffee-fa066.firebaseio.com",
+    "project_id": "traffee-fa066",
+    "storage_bucket": "traffee-fa066.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703254307190:android:ba8a1c75e1b2ba61",
+        "android_client_info": {
+          "package_name": "com.yashbohara.sample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "703254307190-a0ekj99a1gatsg76uftjtnd2o8o6qn11.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yashbohara.sample",
+            "certificate_hash": "e2a526edbc8844e4455e9520fa441d8c71286744"
+          }
+        },
+        {
+          "client_id": "703254307190-6dem5gai4jhr4ru68kqbfkhtgm33dh9b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBV2_TqgZRSPVcoNuvUbmLo3K8LtmLLZYY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "703254307190-6dem5gai4jhr4ru68kqbfkhtgm33dh9b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -67,7 +67,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:layout_marginTop="25dp"
-            android:onClick="navigateToBaseActivity"
             android:background="@drawable/white_rounded_button"
             android:padding="12dp"
             android:textColor="@color/black"

@@ -8,4 +8,5 @@
     <string name="reciepts">&#xf15b;</string>
     <string name="pending">&#xf28b;</string>
     <string name="user">&#xf0c0;</string>
+    <string name="check">&#xf00c;</string>
 </resources>
