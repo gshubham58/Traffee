@@ -39,12 +39,14 @@ public class Pdashboard extends AppCompatActivity {
     Bitmap obj;
     byte[] byteArray;
     TextAnnotation text;
-    String mob,usr;
+    String mob="",usr="";
+    Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdashboard);
         TextView scan=(TextView)findViewById(R.id.scan);
+        bundle=getIntent().getExtras();
 //        setSupportActionBar(toolbar);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -71,11 +73,10 @@ Log.e("hello","jdjhd");
                     @Override
                     public void onResponse(String response) {
                         try {
-                            Log.e("res     ","  ");
                             JSONObject obj=new JSONObject(response);
                             String result=obj.getString("engine no");
-                            fun(result);
                             Log.e("res  ",result);
+                            fun(result);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -98,28 +99,48 @@ Log.e("hello","jdjhd");
     }
 void fun(String temp) {
 
-    RequestQueue queue = Volley.newRequestQueue(Pdashboard.this);
+    Log.e("yooo","1");
+    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
     String url = "https://login-api-demo.herokuapp.com/getdetails/engno=" + temp;
     final StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
         @Override
         public void onResponse(String response) {
             try {
+                Log.e("yoooo","2");
                 JSONArray res = new JSONArray(response);
-                JSONObject obj = res.getJSONObject(0);
-                mob = obj.getString("mobile");
-                usr = obj.getString("username");
-                Toast.makeText(getApplicationContext(),"Name="+usr+"\nMobile="+mob,Toast.LENGTH_LONG).show();
+                if(res.length()>0) {
+                    Log.e("yoooo", "3");
+                    JSONObject obj = res.getJSONObject(0);
+
+                    Log.e("yoooo", "4");
+                    mob = obj.getString("mobile");
+                    Log.e("yoooo", "5");
+                    usr = obj.getString("username");
+                    Log.e("yooo", mob);
+                    Toast.makeText(getApplicationContext(), "Name=" + usr + "\nMobile=" + mob, Toast.LENGTH_LONG).show();
+                }
+
+                Intent i=new Intent(getApplicationContext(),FilterFine.class);
+                i.putExtra("mobile",mob);
+                i.putExtra("username",usr);
+                i.putExtra("policeid",bundle.getString("policeid"));
+                startActivity(i);
             } catch (JSONException e) {
+                Log.e("bbbbbbb","nnnn");
                 e.printStackTrace();
             }
         }
     }, new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
-            Log.e("error", "volley1");
+            Log.e("error", error+"");
         }
     });
+    stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     queue.add(stringRequest);
+
 }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.payu.india.Model.PaymentParams;
@@ -28,7 +29,7 @@ import java.util.Iterator;
 
 public class Payment extends AppCompatActivity {
     EditText edt;
-
+    Button web;
     private String merchantKey, userCredentials;
 
     // These will hold all the payment parameters
@@ -41,7 +42,16 @@ public class Payment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         edt=(EditText)findViewById(R.id.edtxt);
-        Payu.setInstance(this);
+        //Payu.setInstance(this);
+        web=(Button) findViewById(R.id.btn);
+        web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),Webview.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 

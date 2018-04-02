@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Sample</string>
     <string name="title_activity_pdashboard">Pdashboard</string>
+    <string-array name="fine">
+        <item>not having driving liscense</item>
+        <item>not having registration card</item>
+        <item>not wearing helmet</item>
+        <item>driving by a minor</item>
+        <item>driving against one-way</item>
+    </string-array>
 </resources>

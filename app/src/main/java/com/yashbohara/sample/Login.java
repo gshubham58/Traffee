@@ -39,7 +39,7 @@ public class Login extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //p1.setVisibility(View.VISIBLE);
+                p1.setVisibility(View.VISIBLE);
                // Log.e("type",type);
 //                Intent i=new Intent(getApplicationContext(),Pdashboard.class);
 //                startActivity(i);}
@@ -75,9 +75,15 @@ public class Login extends AppCompatActivity {
                                            if (ps.equals(pass.getText().toString())) {
                                                if(type.equals("admin")){
                                                Intent intent = new Intent(getApplicationContext(), Pdashboard.class);
+                                               intent.putExtra("policeid",name.getText().toString());
+                                               intent.putExtra("mobile",mobile);
+                                               p1.setVisibility(View.INVISIBLE);
                                                startActivity(intent);}
                                                else if(type.equals("user")){
                                                    Intent intent = new Intent(getApplicationContext(), Udashboard.class);
+                                                   intent.putExtra("userid",name.getText().toString());
+                                                   intent.putExtra("mobile",mobile);
+                                                   p1.setVisibility(View.INVISIBLE);
                                                    startActivity(intent);
                                                }
                                            } else {

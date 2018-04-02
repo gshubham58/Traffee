@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8099CC">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/l0"
+        android:paddingTop="55dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp">
+        <TextView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:gravity="center"
+            android:text="Traffee"
+            android:fontFamily="@font/fontawesome"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="50dp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/offstatus"
+            android:fontFamily="@font/fontawesome"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:id="@+id/offstatuscode"
+            android:textSize="20dp"/>
+    </LinearLayout>
+</RelativeLayout>

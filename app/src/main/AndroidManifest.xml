@@ -3,6 +3,8 @@
     package="com.yashbohara.sample">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -25,7 +27,15 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".Udashboard" />
         <activity android:name=".Login" />
-        <activity android:name=".Payment"></activity>
+        <activity android:name=".Payment" />
+        <activity android:name=".Webview" />
+        <activity android:name=".FilterFine" />
+        <activity android:name=".Amount" />
+        <activity android:name=".OfflineChallan" />
+        <activity android:name=".Online" />
+        <activity android:name=".Policedetails" />
+        <activity android:name=".Userdetails" />
+        <activity android:name=".User_Payment_List"></activity>
     </application>
 
 </manifest>

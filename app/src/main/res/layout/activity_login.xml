@@ -57,7 +57,7 @@
                 android:id="@+id/MobileNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Mobile"
+                android:hint="UserId"
                 android:inputType="text" />
 
         </android.support.design.widget.TextInputLayout>
