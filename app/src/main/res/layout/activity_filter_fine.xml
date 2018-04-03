@@ -51,13 +51,13 @@
             android:layout_below="@+id/l1"
             android:id="@+id/l2"
             android:orientation="vertical">
+
             <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:background="@color/white"
                 android:id="@+id/s1"
-                android:entries="@array/fine">
-            </Spinner>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:entries="@array/fine"></Spinner>
 
         </LinearLayout>
         <LinearLayout
