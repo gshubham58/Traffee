@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -18,8 +19,8 @@ int amount;
         setContentView(R.layout.activity_webview);
         bundle=getIntent().getExtras();
         amount=bundle.getInt("amount");
-
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(getApplicationContext());
+        Log.e("amount",amount+"");
+       /* AlertDialog.Builder builder1 = new AlertDialog.Builder(getApplicationContext());
         builder1.setMessage("Amount to be paid "+amount+" Rs");
         builder1.setCancelable(true);
 
@@ -32,7 +33,23 @@ int amount;
                 });
         AlertDialog alert11 = builder1.create();
         alert11.show();
-        WebView webview=(WebView) findViewById(R.id.web);
+       */
+        AlertDialog.Builder alertbox=new AlertDialog.Builder(Webview.this,R.style.MyDialogTheme);
+
+
+        alertbox.setTitle("Amount To be Paid");
+        alertbox.setMessage(""+amount);
+        alertbox.setCancelable(true);
+        alertbox.setPositiveButton("Yes", new
+                DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        arg0.cancel();
+                        /////operations
+                    }
+                });
+
+        alertbox.show();
+       WebView webview=(WebView) findViewById(R.id.web);
         webview.getSettings().setJavaScriptEnabled(true);
         webview.setWebViewClient(new WebViewClient(){
             @Override

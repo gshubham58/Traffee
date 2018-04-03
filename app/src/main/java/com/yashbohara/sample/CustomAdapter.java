@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class CustomAdapter extends BaseAdapter{
 TextView finetype,amount;
 int fine;
-Button b1;
+//Button b1;
 LayoutInflater layoutInflater;
 ArrayList<Integer> v;
 ArrayList<String> s;
@@ -52,7 +52,7 @@ ArrayList<String> s;
         String singlelist=s.get(position);
         int fine= v.get(position);
         finetype.setText(singlelist);
-        b1=(Button)view.findViewById(R.id.pay);
+     //   b1=(Button)view.findViewById(R.id.pay);
         amount.setText(fine+"");
         return view;
     }

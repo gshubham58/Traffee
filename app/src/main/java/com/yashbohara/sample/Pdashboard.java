@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,11 +43,13 @@ public class Pdashboard extends AppCompatActivity {
     byte[] byteArray;
     TextAnnotation text;
     String mob="",usr="";
+    ProgressBar p1;
    Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdashboard);
+        p1=(ProgressBar)findViewById(R.id.progressBar);
         TextView scan=(TextView)findViewById(R.id.scan);
         TextView log=(TextView)findViewById(R.id.p_logs);
         bundle=getIntent().getExtras();
@@ -66,6 +69,7 @@ public class Pdashboard extends AppCompatActivity {
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                p1.setVisibility(View.VISIBLE);
 //                Intent intent=new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 //                startActivityForResult(intent,0);
 Log.e("hello","jdjhd");
@@ -80,8 +84,10 @@ Log.e("hello","jdjhd");
                             String result=obj.getString("engine no");
                             Log.e("res  ",result);
                             fun(result);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            p1.setVisibility(View.INVISIBLE);
                         }
                     }
                 }, new Response.ErrorListener()
@@ -104,12 +110,23 @@ Log.e("hello","jdjhd");
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                p1.setVisibility(View.VISIBLE);
                Intent intent=new Intent(getApplicationContext(),Police_Log_List.class);
                intent.putExtra("policeid",bundle.getString("policeid"));
-               startActivity(intent);
+                p1.setVisibility(View.INVISIBLE);
+                startActivity(intent);
             }
         });
         //logs completed
+    }
+    public void details_clicked(View view){
+
+        Intent intent=new Intent(Pdashboard.this,Policedetails.class);
+        intent.putExtra("policeid",bundle.getString("policeid"));
+        intent.putExtra("mobile",bundle.getString("mobile"));
+        startActivity(intent);
+
+
     }
 void fun(String temp) {
 
@@ -131,13 +148,14 @@ void fun(String temp) {
                     Log.e("yoooo", "5");
                     usr = obj.getString("username");
                     Log.e("yooo", mob);
-                    Toast.makeText(getApplicationContext(), "Name=" + usr + "\nMobile=" + mob, Toast.LENGTH_LONG).show();
+
                 }
 
                 Intent i=new Intent(getApplicationContext(),FilterFine.class);
                 i.putExtra("mobile",mob);
                 i.putExtra("username",usr);
                 i.putExtra("policeid",bundle.getString("policeid"));
+                p1.setVisibility(View.INVISIBLE);
                 startActivity(i);
             } catch (JSONException e) {
                 Log.e("bbbbbbb","nnnn");

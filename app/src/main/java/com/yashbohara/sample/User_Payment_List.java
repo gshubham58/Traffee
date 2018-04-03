@@ -64,18 +64,18 @@ ArrayList<Integer> amount;
 
                     final ListAdapter listAdapter=new CustomAdapter(getApplicationContext(),item,amount);
                     l1.setAdapter(listAdapter);
-//                    l1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                        @Override
-//                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                            Log.e("message",position+"");
-//                            int cost=amount.get(position);
-//                            Log.e("amount",cost+""+"bb"+adapterView.getItemAtPosition(position));
-//
-//                            Intent intent=new Intent(User_Payment_List.this,Webview.class);
-//                            intent.putExtra("amount",cost);
-//                            startActivity(intent);
-//                        }
-//                    });
+                    l1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                            Log.e("message",position+"");
+                            int cost=amount.get(position);
+                            Log.e("amount",cost+""+"bb"+adapterView.getItemAtPosition(position));
+
+                            Intent intent=new Intent(User_Payment_List.this,Webview.class);
+                            intent.putExtra("amount",cost);
+                            startActivity(intent);
+                        }
+                    });
 
 
                 } catch (JSONException e) {
@@ -92,10 +92,10 @@ ArrayList<Integer> amount;
         queue.add(stringRequest);
 
     }
-    public void list_clicked(View view)
+ /*   public void list_clicked(View view)
     {
         Log.e("list","clicked");
         Intent intent=new Intent(User_Payment_List.this,Webview.class);
         startActivity(intent);
-    }
+    }*/
 }
