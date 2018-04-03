@@ -34,6 +34,7 @@ Bundle bundle;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_udashboard);
         pay=(TextView)findViewById(R.id.i2);
+        final ProgressBar p1=(ProgressBar)findViewById(R.id.progressBar);
         logout=(TextView)findViewById(R.id.i4);
         pendingfee=(TextView)findViewById(R.id.Pendingfee);
         bundle=getIntent().getExtras();
@@ -55,11 +56,21 @@ Bundle bundle;
         pendingfee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                p1.setVisibility(View.VISIBLE);
             Intent intent=new Intent(getApplicationContext(),User_Payment_List.class);
             intent.putExtra("userid",bundle.getString("userid"));
-            startActivity(intent);
+                p1.setVisibility(View.INVISIBLE);
+                startActivity(intent);
             }
         });
+    }
+    public void profile_user(View view){
+        Intent intent=new Intent(Udashboard.this,Userdetails.class);
+        intent.putExtra("userid",bundle.getString("userid"));
+        intent.putExtra("mobile",bundle.getString("mobile"));
+        startActivity(intent);
+
+
     }
 
 }

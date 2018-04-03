@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,18 +35,20 @@ public class FilterFine extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_fine);
         b=getIntent().getExtras();
+        final ProgressBar p1=(ProgressBar)findViewById(R.id.progressBar);
         mob=b.getString("mobile");
         username=b.getString("username");
         name=(TextView) findViewById(R.id.filter_Name);
         mobile=(TextView) findViewById(R.id.filter_mobile);
-        name.setText(username);
-        mobile.setText(mob);
+        name.setText(" Username - "+username);
+        mobile.setText(" Mobile no.-"+mob);
         generatefine=(Button)findViewById(R.id.filter_Button);
         finetype=(Spinner)findViewById(R.id.s1);
 
         generatefine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                p1.setVisibility(View.VISIBLE);
                 type=finetype.getSelectedItem().toString();
                 //volley request to find fine amount
 
@@ -66,9 +69,11 @@ public class FilterFine extends AppCompatActivity {
 //                            Log.e("userid=",b.getString(username));
                             i.putExtra("type",type);
                             i.putExtra("Amount",fine);
+                            p1.setVisibility(View.INVISIBLE);
                             startActivity(i);
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            p1.setVisibility(View.INVISIBLE);
                         }
                     }
                 }, new Response.ErrorListener() {

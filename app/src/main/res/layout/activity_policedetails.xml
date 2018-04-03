@@ -40,10 +40,10 @@
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                android:id="@+id/amountText"/>
+                android:id="@+id/detailspoliceid"/>
 
             <TextView
-                android:id="@+id/amountValue"
+                android:id="@+id/detailsmobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
