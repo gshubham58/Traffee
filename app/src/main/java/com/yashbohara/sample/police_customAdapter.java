@@ -6,18 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 import java.util.ArrayList;
 
-public class CustomAdapter extends BaseAdapter{
-TextView finetype,amount;
-int fine;
-Button b1;
-LayoutInflater layoutInflater;
-ArrayList<Integer> v;
-ArrayList<String> s;
-    public CustomAdapter(Context context, ArrayList<String> item, ArrayList<Integer> value) {
+public class police_customAdapter extends BaseAdapter{
+    TextView finetype,amount;
+    int fine;
+    LayoutInflater layoutInflater;
+    ArrayList<Integer> v;
+    ArrayList<String> s;
+    public police_customAdapter(Context context, ArrayList<String> item, ArrayList<Integer> value) {
         s=item;
         v=value;
         layoutInflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -46,14 +44,14 @@ ArrayList<String> s;
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view=layoutInflater.inflate(R.layout.row,parent,false);
-        finetype=(TextView)view.findViewById(R.id.finety);
-        amount=(TextView)view.findViewById(R.id.amountty);
+        View view=layoutInflater.inflate(R.layout.police_row,parent,false);
+        finetype=(TextView)view.findViewById(R.id.police_finetype);
+        amount=(TextView)view.findViewById(R.id.police_amounttype);
         String singlelist=s.get(position);
         int fine= v.get(position);
         finetype.setText(singlelist);
-        b1=(Button)view.findViewById(R.id.pay);
         amount.setText(fine+"");
+
         return view;
     }
 

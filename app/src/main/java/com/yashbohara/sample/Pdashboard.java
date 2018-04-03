@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Pdashboard extends AppCompatActivity {
@@ -40,12 +42,13 @@ public class Pdashboard extends AppCompatActivity {
     byte[] byteArray;
     TextAnnotation text;
     String mob="",usr="";
-    Bundle bundle;
+   Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdashboard);
         TextView scan=(TextView)findViewById(R.id.scan);
+        TextView log=(TextView)findViewById(R.id.p_logs);
         bundle=getIntent().getExtras();
 //        setSupportActionBar(toolbar);
 
@@ -96,6 +99,17 @@ Log.e("hello","jdjhd");
 
             }
         });
+
+        //logs
+        log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Intent intent=new Intent(getApplicationContext(),Police_Log_List.class);
+               intent.putExtra("policeid",bundle.getString("policeid"));
+               startActivity(intent);
+            }
+        });
+        //logs completed
     }
 void fun(String temp) {
 
