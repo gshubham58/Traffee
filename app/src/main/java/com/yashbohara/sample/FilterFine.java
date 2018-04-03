@@ -26,6 +26,7 @@ public class FilterFine extends AppCompatActivity {
    Button generatefine;
    Spinner finetype;
    Bundle b;
+   String type="not having driving liscense";
    int fine;
    String mob,username;
     @Override
@@ -45,7 +46,7 @@ public class FilterFine extends AppCompatActivity {
         generatefine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String type=finetype.getSelectedItem().toString();
+                type=finetype.getSelectedItem().toString();
                 //volley request to find fine amount
 
                 RequestQueue queue = Volley.newRequestQueue(FilterFine.this);

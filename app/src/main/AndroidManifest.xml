@@ -35,7 +35,8 @@
         <activity android:name=".Online" />
         <activity android:name=".Policedetails" />
         <activity android:name=".Userdetails" />
-        <activity android:name=".User_Payment_List"></activity>
+        <activity android:name=".User_Payment_List" />
+        <activity android:name=".Police_Log_List"></activity>
     </application>
 
 </manifest>
