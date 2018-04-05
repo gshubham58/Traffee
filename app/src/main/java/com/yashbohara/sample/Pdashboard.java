@@ -42,7 +42,7 @@ public class Pdashboard extends AppCompatActivity {
     Bitmap obj;
     byte[] byteArray;
     TextAnnotation text;
-    String mob="",usr="";
+    String mob="",usr="",numberplate;
     ProgressBar p1;
    Bundle bundle;
     @Override
@@ -66,57 +66,57 @@ public class Pdashboard extends AppCompatActivity {
 //
 
         //SCAN STARTED
-        scan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                p1.setVisibility(View.VISIBLE);
-//                Intent intent=new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-//                startActivityForResult(intent,0);
-Log.e("hello","jdjhd");
-                RequestQueue queue= Volley.newRequestQueue(Pdashboard.this);
-                Log.e("gg","  gghhhh");
-                String url="https://vehicleapi.herokuapp.com/num/mp33mb3988";
-                final StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject obj=new JSONObject(response);
-                            String result=obj.getString("engine no");
-                            Log.e("res  ",result);
-                            fun(result);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            p1.setVisibility(View.INVISIBLE);
-                        }
-                    }
-                }, new Response.ErrorListener()
-//////
-                {
-                    @Override
-                    public void onErrorResponse (VolleyError error){
-                        Log.e("error", ""+error);
-                    }
-                });
-                stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
-                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                queue.add(stringRequest);
-
-            }
-        });
+//        scan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                p1.setVisibility(View.VISIBLE);
+////                Intent intent=new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+////                startActivityForResult(intent,0);
+//Log.e("hello","jdjhd");
+//                RequestQueue queue= Volley.newRequestQueue(Pdashboard.this);
+//                Log.e("gg","  gghhhh");
+//                String url="https://vehicleapi.herokuapp.com/num/"+numberplate;
+//                final StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        try {
+//                            JSONObject obj=new JSONObject(response);
+//                            String result=obj.getString("engine no");
+//                            Log.e("res  ",result);
+//                            fun(result);
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                            p1.setVisibility(View.INVISIBLE);
+//                        }
+//                    }
+//                }, new Response.ErrorListener()
+//
+//                {
+//                    @Override
+//                    public void onErrorResponse (VolleyError error){
+//                        Log.e("error", ""+error);
+//                    }
+//                });
+//                stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+//                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//                queue.add(stringRequest);
+//
+//            }
+//        });
 
         //logs
-        log.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                p1.setVisibility(View.VISIBLE);
-               Intent intent=new Intent(getApplicationContext(),Police_Log_List.class);
-               intent.putExtra("policeid",bundle.getString("policeid"));
-                p1.setVisibility(View.INVISIBLE);
-                startActivity(intent);
-            }
-        });
+//        log.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                p1.setVisibility(View.VISIBLE);
+//               Intent intent=new Intent(getApplicationContext(),Police_Log_List.class);
+//               intent.putExtra("policeid",bundle.getString("policeid"));
+//                p1.setVisibility(View.INVISIBLE);
+//                startActivity(intent);
+//            }
+//        });
         //logs completed
     }
     public void details_clicked(View view){
@@ -128,7 +128,54 @@ Log.e("hello","jdjhd");
 
 
     }
-void fun(String temp) {
+    public void logs_clicked(View view)
+    {
+        p1.setVisibility(View.VISIBLE);
+        Intent intent=new Intent(getApplicationContext(),Police_Log_List.class);
+        intent.putExtra("policeid",bundle.getString("policeid"));
+        p1.setVisibility(View.INVISIBLE);
+        startActivity(intent);
+    }
+    public void scan_clicked(View view) {
+        p1.setVisibility(View.VISIBLE);
+//                Intent intent=new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//                startActivityForResult(intent,0);
+        Log.e("hello","jdjhd");
+        RequestQueue queue= Volley.newRequestQueue(Pdashboard.this);
+        Log.e("gg","  gghhhh");
+        String url="https://vehicleapi.herokuapp.com/num/"+numberplate;
+        final StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj=new JSONObject(response);
+                    String result=obj.getString("engine no");
+                    Log.e("res  ",result);
+                    fun(result);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    p1.setVisibility(View.INVISIBLE);
+                }
+            }
+        }, new Response.ErrorListener()
+
+        {
+            @Override
+            public void onErrorResponse (VolleyError error){
+                Log.e("error", ""+error);
+            }
+        });
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(stringRequest);
+
+    }
+    public void logout_clicked(View view){
+
+    }
+        void fun(String temp) {
 
     Log.e("yooo","1");
     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
@@ -178,6 +225,7 @@ void fun(String temp) {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==0){
+            Log.e("1","jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
             obj=(Bitmap)data.getExtras().get("data");
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             obj.compress(Bitmap.CompressFormat.JPEG, 100, stream);
@@ -188,7 +236,7 @@ void fun(String temp) {
                     new NetHttpTransport(),
                     new AndroidJsonFactory(),
                     null);
-
+            Log.e("2","jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
             visionBuilder.setVisionRequestInitializer(
                     new VisionRequestInitializer("AIzaSyB51FD06nqSckijl2iKPLiaBb0SSrPGC7o"));
             final Vision vision = visionBuilder.build();
@@ -212,18 +260,21 @@ void fun(String temp) {
 
 
                     try {
+                        Log.e("3","jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
                         BatchAnnotateImagesResponse batchResponse = vision.images().annotate(batchRequest).execute();
                         Log.e("aa","1") ;
                         text = batchResponse.getResponses()
                                 .get(0).getFullTextAnnotation();
                         Log.e("aa","2") ;
-
+numberplate=text.getText().toString();
 //                    Toast.makeText(getApplicationContext(),
 //                            text.getText(), Toast.LENGTH_LONG).show();
                         Log.e("result",text.getText());
                         //a(text.getText().toString());
                     } catch (IOException e) {
+                        Log.e("4","jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
                         e.printStackTrace();
+                        Log.e("5","jjjjjjjjjjjjj");
                     }
 
                 }

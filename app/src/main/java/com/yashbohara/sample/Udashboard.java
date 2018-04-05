@@ -27,14 +27,14 @@ import java.util.Date;
 
 public class Udashboard extends AppCompatActivity {
 TextView pay,logout,pendingfee;
-ProgressBar progressBar;
+    ProgressBar p1;
 Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_udashboard);
         pay=(TextView)findViewById(R.id.i2);
-        final ProgressBar p1=(ProgressBar)findViewById(R.id.progressBar);
+        p1=(ProgressBar)findViewById(R.id.progressBar);
         logout=(TextView)findViewById(R.id.i4);
         pendingfee=(TextView)findViewById(R.id.Pendingfee);
         bundle=getIntent().getExtras();
@@ -45,32 +45,41 @@ Bundle bundle;
 //            startActivity(i);
 //        }
 //    });
-    logout.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            FirebaseAuth.getInstance().signOut();
-        }
-    });
+//    logout.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            FirebaseAuth.getInstance().signOut();
+//        }
+//    });
 
     //pending fee
-        pendingfee.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                p1.setVisibility(View.VISIBLE);
-            Intent intent=new Intent(getApplicationContext(),User_Payment_List.class);
-            intent.putExtra("userid",bundle.getString("userid"));
-                p1.setVisibility(View.INVISIBLE);
-                startActivity(intent);
-            }
-        });
+//        pendingfee.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                p1.setVisibility(View.VISIBLE);
+//            Intent intent=new Intent(getApplicationContext(),User_Payment_List.class);
+//            intent.putExtra("userid",bundle.getString("userid"));
+//                p1.setVisibility(View.INVISIBLE);
+//                startActivity(intent);
+//            }
+//        });
+    }
+    public void logout_clicked(View view){
+        FirebaseAuth.getInstance().signOut();
+    }
+    public void pendingfee_clicked(View view){
+        p1.setVisibility(View.VISIBLE);
+        Intent intent=new Intent(getApplicationContext(),User_Payment_List.class);
+        intent.putExtra("userid",bundle.getString("userid"));
+        p1.setVisibility(View.INVISIBLE);
+        startActivity(intent);
     }
     public void profile_user(View view){
         Intent intent=new Intent(Udashboard.this,Userdetails.class);
         intent.putExtra("userid",bundle.getString("userid"));
         intent.putExtra("mobile",bundle.getString("mobile"));
         startActivity(intent);
-
-
     }
-
+    public void reciept_clicked(View view){
+    }
 }
