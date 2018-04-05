@@ -41,12 +41,13 @@
             android:id="@+id/scan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_weight="2"
             android:fontFamily="@font/fontawesome"
+            android:gravity="center"
+            android:onClick="scan_clicked"
             android:text="@string/scan"
             android:textColor="@color/white"
-            android:textSize="50dp"
-            android:layout_weight="2" />
+            android:textSize="50dp" />
 
         <TextView
             android:id="@+id/i2"
@@ -72,9 +73,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
+            android:gravity="center"
+            android:onClick="scan_clicked"
             android:text="Scan"
-            android:textColor="@color/white"
-            android:gravity="center"/>
+            android:textColor="@color/white" />
 
         <TextView
             android:layout_width="match_parent"
@@ -97,22 +99,25 @@
             android:id="@+id/i3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_weight="2"
             android:fontFamily="@font/fontawesome"
+            android:gravity="center"
+            android:onClick="logs_clicked"
             android:text="@string/payment"
             android:textColor="@color/white"
-            android:textSize="50dp"
-            android:layout_weight="2"/>
+            android:textSize="50dp" />
+
         <TextView
             android:id="@+id/i4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_weight="2"
             android:fontFamily="@font/fontawesome"
+            android:gravity="center"
+            android:onClick="logout_clicked"
             android:text="@string/logout"
             android:textColor="@color/white"
-            android:textSize="50dp"
-            android:layout_weight="2"/>
+            android:textSize="50dp" />
 
     </LinearLayout>
     <LinearLayout
@@ -123,21 +128,23 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/p_logs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
+            android:gravity="center"
+            android:onClick="logs_clicked"
             android:text="Logs"
-            android:id="@+id/p_logs"
-            android:textColor="@color/white"
-            android:gravity="center"/>
+            android:textColor="@color/white" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
+            android:gravity="center"
+            android:onClick="logout_clicked"
             android:text="Logout"
-            android:textColor="@color/white"
-            android:gravity="center"/>
+            android:textColor="@color/white" />
     </LinearLayout>
         <ProgressBar
             android:id="@+id/progressBar"

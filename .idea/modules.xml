@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Sample.iml" filepath="$PROJECT_DIR$/Sample.iml" />
       <module fileurl="file://D:\Android\Traffee\Sample.iml" filepath="D:\Android\Traffee\Sample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Traffee.iml" filepath="$PROJECT_DIR$/Traffee.iml" />
+      <module fileurl="file://C:\Users\YashBohara\AndroidStudioProjects\Sample\Traffee.iml" filepath="C:\Users\YashBohara\AndroidStudioProjects\Sample\Traffee.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/sdkui/sdkui.iml" filepath="$PROJECT_DIR$/sdkui/sdkui.iml" />
     </modules>
