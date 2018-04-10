@@ -26,18 +26,18 @@ public class FilterFine extends AppCompatActivity {
     TextView name,mobile;
    Button generatefine;
    Spinner finetype;
-   Bundle b;
    String type="not having driving liscense";
    int fine;
    String mob,username;
+   sharedpref shr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_fine);
-        b=getIntent().getExtras();
+        shr=sharedpref.getSharedPref(getApplicationContext());
         final ProgressBar p1=(ProgressBar)findViewById(R.id.progressBar);
-        mob=b.getString("mobile");
-        username=b.getString("username");
+        mob=shr.getvalue("mobile").toString();
+        username=shr.getvalue("userid").toString();
         name=(TextView) findViewById(R.id.filter_Name);
         mobile=(TextView) findViewById(R.id.filter_mobile);
         name.setText(" Username - "+username);
@@ -63,12 +63,11 @@ public class FilterFine extends AppCompatActivity {
                             JSONObject obj = res.getJSONObject(0);
                             fine = Integer.parseInt(obj.getString("amount"));
                             Intent i=new Intent(getApplicationContext(),Amount.class);
-                            i.putExtra("policeid",b.getString("policeid"));
+
   //                          Log.e("policeid=",b.getString("policeid"));
-                            i.putExtra("userid",username);
+                            shr.setvalue("type",type);
+                            shr.setvalue("Amount",fine);
 //                            Log.e("userid=",b.getString(username));
-                            i.putExtra("type",type);
-                            i.putExtra("Amount",fine);
                             p1.setVisibility(View.INVISIBLE);
                             startActivity(i);
                         } catch (JSONException e) {
@@ -86,6 +85,13 @@ public class FilterFine extends AppCompatActivity {
 
             }
         });
+
+    }
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(getApplicationContext(),NumberplateText.class);
+        startActivity(i);
+        this.finish();
 
     }
 }

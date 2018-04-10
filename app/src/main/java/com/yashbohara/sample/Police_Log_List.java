@@ -1,5 +1,6 @@
 package com.yashbohara.sample;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,23 +25,23 @@ public class Police_Log_List extends AppCompatActivity {
 
     ArrayList<Integer> amount;
     ArrayList<String> list;
-    Bundle bundle;
 ListView l1;
+    sharedpref shr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_police__log__list);
-        bundle=getIntent().getExtras();
+
         l1=(ListView)findViewById(R.id.police_list);
         RequestQueue queue= Volley.newRequestQueue(Police_Log_List.this);
-        Log.e("gg","  g"+bundle.getString("policeid"));
-        String url="https://police-login.herokuapp.com/getdetails/policeid="+bundle.getString("policeid");
+        shr=sharedpref.getSharedPref(getApplicationContext());
+        String url="https://police-login.herokuapp.com/getdetails/policeid="+shr.getvalue("policeid");
         final StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject obj=new JSONObject(response);
-                    JSONArray user=obj.getJSONArray(bundle.getString("policeid"));
+                    JSONArray user=obj.getJSONArray(shr.getvalue("policeid").toString());
                     list=new ArrayList<>();
                     amount=new ArrayList<>();
                     for(int i=0;i<user.length();i++)
@@ -69,5 +70,12 @@ ListView l1;
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
+    }
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(getApplicationContext(),Pdashboard.class);
+        startActivity(i);
+        this.finish();
+
     }
 }

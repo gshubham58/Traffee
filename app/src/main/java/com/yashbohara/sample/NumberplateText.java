@@ -26,7 +26,6 @@ EditText edtxt;
 Button btn;
 ProgressBar p1;
 String mob="",usr="";
-Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +33,7 @@ Bundle bundle;
         btn=(Button)findViewById(R.id.search);
         edtxt=(EditText)findViewById(R.id.edttxt);
         p1=(ProgressBar)findViewById(R.id.progressBar);
-        bundle=getIntent().getExtras();
+
         btn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -100,9 +99,6 @@ Bundle bundle;
                     }
 
                     Intent i=new Intent(getApplicationContext(),FilterFine.class);
-                    i.putExtra("mobile",mob);
-                    i.putExtra("username",usr);
-                    i.putExtra("policeid",bundle.getString("policeid"));
                     p1.setVisibility(View.INVISIBLE);
                     startActivity(i);
                 } catch (JSONException e) {
@@ -122,5 +118,11 @@ Bundle bundle;
         queue.add(stringRequest);
 
     }
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(getApplicationContext(),Pdashboard.class);
+        startActivity(i);
+        this.finish();
 
+    }
 }

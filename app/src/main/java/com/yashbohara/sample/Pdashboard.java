@@ -44,7 +44,6 @@ public class Pdashboard extends AppCompatActivity {
     TextAnnotation text;
     String mob="",usr="",numberplate;
     ProgressBar p1;
-   Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +51,7 @@ public class Pdashboard extends AppCompatActivity {
         p1=(ProgressBar)findViewById(R.id.progressBar);
         TextView scan=(TextView)findViewById(R.id.scan);
         TextView log=(TextView)findViewById(R.id.p_logs);
-        bundle=getIntent().getExtras();
+
 //        setSupportActionBar(toolbar);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -122,8 +121,6 @@ public class Pdashboard extends AppCompatActivity {
     public void details_clicked(View view){
 
         Intent intent=new Intent(Pdashboard.this,Policedetails.class);
-        intent.putExtra("policeid",bundle.getString("policeid"));
-        intent.putExtra("mobile",bundle.getString("mobile"));
         startActivity(intent);
 
 
@@ -132,12 +129,12 @@ public class Pdashboard extends AppCompatActivity {
     {
         p1.setVisibility(View.VISIBLE);
         Intent intent=new Intent(getApplicationContext(),Police_Log_List.class);
-        intent.putExtra("policeid",bundle.getString("policeid"));
+
         p1.setVisibility(View.INVISIBLE);
         startActivity(intent);
     }
     public void scan_clicked(View view) {
-        p1.setVisibility(View.VISIBLE);
+       /* p1.setVisibility(View.VISIBLE);
 //                Intent intent=new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 //                startActivityForResult(intent,0);
         Log.e("hello","jdjhd");
@@ -170,12 +167,20 @@ public class Pdashboard extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
-
+*/
+       Intent i=new Intent(getApplicationContext(),NumberplateText.class);
+        startActivity(i);
     }
     public void logout_clicked(View view){
+        sharedpref shr=sharedpref.getSharedPref(getApplicationContext());
+        shr.delete("userid");
+        Intent i=new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(i);
+            this.finish();
+
 
     }
-        void fun(String temp) {
+     /*   void fun(String temp) {
 
     Log.e("yooo","1");
     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
@@ -220,7 +225,8 @@ public class Pdashboard extends AppCompatActivity {
             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     queue.add(stringRequest);
 
-}
+}*/
+/*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -286,6 +292,13 @@ numberplate=text.getText().toString();
         }
     }
         //SCAN COMPLETED
+*/
 
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(i);
+        this.finish();
 
+    }
 }

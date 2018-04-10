@@ -25,14 +25,28 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 public class Login extends AppCompatActivity {
     EditText name,pass;
+    sharedpref shr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Button b1=(Button)findViewById(R.id.btn_login);
+        try {
+            shr = sharedpref.getSharedPref(getApplicationContext());
+            String uid=shr.getvalue("userid").toString();
+            String pid=shr.getvalue("policeid").toString();
+            if(uid==null || pid==null){
+                Toast.makeText(this, "uid or pid not found", Toast.LENGTH_SHORT).show();
+
+            }
+        }catch(Exception e){
+            shr=new sharedpref(getApplicationContext());
+
+        }
+
+
         final ProgressBar p1=(ProgressBar)findViewById(R.id.progressBar);
         TextView reg=(TextView)findViewById(R.id.link_signup);
-        Bundle bundle=getIntent().getExtras();
         //final String type=bundle.getString("type");
         name=(EditText)findViewById(R.id.MobileNumber);
         pass=(EditText)findViewById(R.id.input_password);
@@ -75,16 +89,24 @@ public class Login extends AppCompatActivity {
                                            if (ps.equals(pass.getText().toString())) {
                                                if(type.equals("admin")){
                                                Intent intent = new Intent(getApplicationContext(), Pdashboard.class);
-                                               intent.putExtra("policeid",name.getText().toString());
-                                               intent.putExtra("mobile",mobile);
-                                               p1.setVisibility(View.INVISIBLE);
-                                               startActivity(intent);}
+
+                                                   shr.setvalue("policeid", name.getText().toString());
+                                                   shr.setvalue("police_mobile",mobile);
+                                        shr.setvalue("password",pass.getText().toString());
+                                                   p1.setVisibility(View.INVISIBLE);
+                                               startActivity(intent);
+                                                   Login.this.finish();
+                                               }
                                                else if(type.equals("user")){
                                                    Intent intent = new Intent(getApplicationContext(), Udashboard.class);
-                                                   intent.putExtra("userid",name.getText().toString());
-                                                   intent.putExtra("mobile",mobile);
+                                                   sharedpref sharedPref=new sharedpref(getApplicationContext());
+                                                   sharedPref.setvalue("userid", name.getText().toString());
+                                                   sharedPref.setvalue("password",pass.getText().toString());
+                                                   sharedPref.setvalue("user_mobile",mobile);
+
                                                    p1.setVisibility(View.INVISIBLE);
                                                    startActivity(intent);
+                                                   Login.this.finish();
                                                }
                                            } else {
                                                Toast.makeText(Login.this, " Invalid Password", Toast.LENGTH_LONG).show();
@@ -118,8 +140,12 @@ public class Login extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(i);
+        this.finish();
 
-
-
+    }
 
 }

@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import static java.lang.System.exit;
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,4 +34,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }}
+    }
+    @Override
+    public void onBackPressed() {
+        exit(0);
+
+    }
+
+}

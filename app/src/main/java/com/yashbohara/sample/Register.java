@@ -128,6 +128,7 @@ public class Register extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Successfully Registered",Toast.LENGTH_LONG).show();
                         Intent intent=new Intent(getApplicationContext(),Login.class);
                         startActivity(intent);
+                        Register.this.finish();
                     }
                     else if(!result.equals("success"))
                     {
@@ -162,6 +163,8 @@ public class Register extends AppCompatActivity {
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
 
                             }
+                            Register.this.finish();
+
 
                         }
                     }

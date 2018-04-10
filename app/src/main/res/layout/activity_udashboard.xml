@@ -86,7 +86,6 @@
             android:layout_weight="2"
             android:gravity="center"
             android:onClick="pendingfee_clicked"
-            android:outlineProvider="pendingfee_clicked"
             android:text="Pending Fee"
             android:textColor="@color/white" />
     </LinearLayout>
@@ -105,7 +104,7 @@
             android:layout_weight="2"
             android:fontFamily="@font/fontawesome"
             android:gravity="center"
-            android:onClick="reciepts_clicked"
+            android:onClick="reciept_clicked"
             android:text="@string/reciepts"
             android:textColor="@color/white"
             android:textSize="50dp" />

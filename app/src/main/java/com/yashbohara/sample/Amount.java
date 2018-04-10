@@ -29,22 +29,22 @@ TextView fineamount;
 int fine;
 ProgressBar progressBar;
 Button off,on;
-Bundle bundle;
 Date date;
+sharedpref shr;
 Calendar calendar;
 SimpleDateFormat simpleDateFormat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_amount);
-        bundle=getIntent().getExtras();
+
         calendar=Calendar.getInstance();
         simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-
+        shr=sharedpref.getSharedPref(getApplicationContext());
         off=(Button)findViewById(R.id.offline);
         on=(Button)findViewById(R.id.online);
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
-        fine=bundle.getInt("Amount");
+        fine=shr.getvalue("Amount");
         fineamount=(TextView)findViewById(R.id.amountValue);
         fineamount.setText(fine+" Rs");
         off.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +53,7 @@ SimpleDateFormat simpleDateFormat;
 //                progressBar.setVisibility(View.VISIBLE);
                 //save challan in the database
                 RequestQueue queue= Volley.newRequestQueue(Amount.this);
-                String url="https://police-login.herokuapp.com/addpolice/policeid="+bundle.getString("policeid")+"&userid="+bundle.getString("userid")+"&finetype="+bundle.getString("type")+"&amount="+fine+"&date="+simpleDateFormat.format(calendar.getTime())+"&mode=offline";
+                String url="https://police-login.herokuapp.com/addpolice/policeid="+shr.getvalue("policed").toString()+"&userid="+shr.getvalue("userid").toString()+"&finetype="+shr.getvalue("type").toString()+"&amount="+fine+"&date="+simpleDateFormat.format(calendar.getTime())+"&mode=offline";
                 Log.e("hh  ",url);
                 final StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                     @Override
@@ -103,8 +103,8 @@ SimpleDateFormat simpleDateFormat;
 //                progressBar.setVisibility(View.VISIBLE);
                 //save challan in the database
                 RequestQueue queue= Volley.newRequestQueue(Amount.this);
-                String type=bundle.getString("type");
-                String url="https://police-login.herokuapp.com/addpolice/policeid="+bundle.getString("policeid")+"&userid="+bundle.getString("userid")+"&finetype="+bundle.getString("type")+"&amount="+fine+"&date="+simpleDateFormat.format(calendar.getTime())+"&mode=online";
+                String type=shr.getvalue("type").toString();
+                String url="https://police-login.herokuapp.com/addpolice/policeid="+shr.getvalue("policeid").toString()+"&userid="+shr.getvalue("userid").toString()+"&finetype="+shr.getvalue("type").toString()+"&amount="+fine+"&date="+simpleDateFormat.format(calendar.getTime())+"&mode=online";
                 Log.e("hh  ",url);
                 final StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                     @Override
@@ -147,6 +147,13 @@ SimpleDateFormat simpleDateFormat;
                 //challan saved
             }
         });
+
+    }
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(getApplicationContext(),FilterFine.class);
+        startActivity(i);
+        this.finish();
 
     }
 }

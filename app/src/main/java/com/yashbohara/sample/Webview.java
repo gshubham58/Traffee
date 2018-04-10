@@ -11,14 +11,14 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public class Webview extends AppCompatActivity {
-Bundle bundle;
+
 int amount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
-        bundle=getIntent().getExtras();
-        amount=bundle.getInt("amount");
+        sharedpref shr=sharedpref.getSharedPref(getApplicationContext());
+        amount=shr.getvalue("amount");
         Log.e("amount",amount+"");
        /* AlertDialog.Builder builder1 = new AlertDialog.Builder(getApplicationContext());
         builder1.setMessage("Amount to be paid "+amount+" Rs");
@@ -54,13 +54,22 @@ int amount;
         webview.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageFinished(WebView view, String url) {
-                if(url.contains("failure")){Intent intent=new Intent(getApplicationContext(),Payment.class);
+                if(url.contains("failure")){Intent intent=new Intent(getApplicationContext(),User_Payment_List.class);
+                    startActivity(intent);}
+                if(url.contains("success")){Intent intent=new Intent(getApplicationContext(),Udashboard.class);
                     startActivity(intent);}
 
             }
 
         });
         webview.loadUrl("https://pmny.in/FIWLamNTfFih");
+
+    }
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(getApplicationContext(),User_Payment_List.class);
+        startActivity(i);
+        this.finish();
 
     }
 }
