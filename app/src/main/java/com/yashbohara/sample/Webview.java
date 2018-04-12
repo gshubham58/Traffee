@@ -55,7 +55,7 @@ int amount;
         webview.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageFinished(WebView view, String url) {
-                Toast.makeText(Webview.this, url, Toast.LENGTH_SHORT).show();
+
                 Log.e("url",url);
                 if(url.contains("failure")){Intent intent=new Intent(getApplicationContext(),User_Payment_List.class);
                     startActivity(intent);}
