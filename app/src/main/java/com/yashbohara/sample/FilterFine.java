@@ -36,8 +36,8 @@ public class FilterFine extends AppCompatActivity {
         setContentView(R.layout.activity_filter_fine);
         shr=sharedpref.getSharedPref(getApplicationContext());
         final ProgressBar p1=(ProgressBar)findViewById(R.id.progressBar);
-        mob=shr.getvalue("mobile").toString();
-        username=shr.getvalue("userid").toString();
+        mob=shr.getvalue("fine_mobile").toString();
+        username=shr.getvalue("fine_user").toString();
         name=(TextView) findViewById(R.id.filter_Name);
         mobile=(TextView) findViewById(R.id.filter_mobile);
         name.setText(" Username - "+username);

@@ -20,6 +20,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.common.base.Verify;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
@@ -58,8 +59,11 @@ public class Register extends AppCompatActivity {
         engineno=(EditText) findViewById(R.id.EngineNumber);
         mobile=(EditText) findViewById(R.id.regmobile);
         code=(EditText) findViewById(R.id.code);
+        code.setVisibility(View.INVISIBLE);
+        verify.setVisibility(View.INVISIBLE);
         password=(EditText) findViewById(R.id.reg_password);
         mAuth = FirebaseAuth.getInstance();
+        p2=(ProgressBar)findViewById(R.id.progressBar_register);
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             @Override
@@ -96,11 +100,13 @@ public class Register extends AppCompatActivity {
                 TimeUnit.SECONDS,   // Unit of timeout
                 this,               // Activity (for callback binding)
                 mCallbacks);        // OnVerificationStateChangedCallbacks
-
+code.setVisibility(View.VISIBLE);
+        verify.setVisibility(View.VISIBLE);
+        b1.setVisibility(View.INVISIBLE);
     }
     public void verify(View view){
         String codes = code.getText().toString();
-        p2=(ProgressBar)findViewById(R.id.progressBar);
+        p2.setVisibility(View.VISIBLE);
         verifyPhoneNumberWithCode(mVerificationId, codes);
 
     }
@@ -125,9 +131,11 @@ public class Register extends AppCompatActivity {
                     if(result.equals("success"))
                     {
                         p2.setVisibility(View.INVISIBLE);
+
                         Toast.makeText(getApplicationContext(),"Successfully Registered",Toast.LENGTH_LONG).show();
-                        Intent intent=new Intent(getApplicationContext(),Login.class);
+                        Intent intent=new Intent(getApplicationContext(),MainActivity.class);
                         startActivity(intent);
+
                         Register.this.finish();
                     }
                     else if(!result.equals("success"))

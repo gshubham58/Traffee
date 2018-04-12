@@ -70,6 +70,7 @@ TextView pay,logout,pendingfee;
             Intent i=new Intent(getApplicationContext(),MainActivity.class);
             sharedpref shr=sharedpref.getSharedPref(getApplicationContext());
             shr.delete("userid");
+        Toast.makeText(this, "Logout Successful", Toast.LENGTH_SHORT).show();
             startActivity(i);
             this.finish();
 
@@ -102,6 +103,13 @@ TextView pay,logout,pendingfee;
 
 
 
+
+    }
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(i);
+        this.finish();
 
     }
 }

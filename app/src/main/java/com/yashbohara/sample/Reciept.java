@@ -105,4 +105,11 @@ sharedpref shr;
 
 
     }
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(getApplicationContext(),Udashboard.class);
+        startActivity(i);
+        this.finish();
+
+    }
 }

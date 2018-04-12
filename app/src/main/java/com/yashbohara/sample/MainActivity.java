@@ -1,6 +1,7 @@
 package com.yashbohara.sample;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,17 +13,21 @@ import android.widget.TextView;
 import static java.lang.System.exit;
 
 public class MainActivity extends AppCompatActivity {
+    sharedpref shr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         TextView admin=(TextView)findViewById(R.id.admin);
         TextView user=(TextView)findViewById(R.id.user);
+        shr = sharedpref.getSharedPref(getApplicationContext());
         admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),Login.class);
                 intent.putExtra("type","admin");
+                shr.setvalue("type","admin");
                 startActivity(intent);
             }
         });
@@ -31,13 +36,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),Login.class);
                 intent.putExtra("type","user");
+                shr.setvalue("type","user");
                 startActivity(intent);
             }
         });
     }
     @Override
     public void onBackPressed() {
-        exit(0);
+        this.finishAffinity();
 
     }
 

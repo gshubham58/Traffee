@@ -26,19 +26,42 @@ import java.util.ArrayList;
 public class Login extends AppCompatActivity {
     EditText name,pass;
     sharedpref shr;
+    Bundle bundle;
+    String typ;
+    TextView link;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        link=(TextView)findViewById(R.id.link_signup);
         Button b1=(Button)findViewById(R.id.btn_login);
+        bundle=getIntent().getExtras();
+        typ=bundle.getString("type");
+        if(typ.equals("admin")){
+            link.setVisibility(View.INVISIBLE);
+        }
         try {
             shr = sharedpref.getSharedPref(getApplicationContext());
-            String uid=shr.getvalue("userid").toString();
-            String pid=shr.getvalue("policeid").toString();
-            if(uid==null || pid==null){
-                Toast.makeText(this, "uid or pid not found", Toast.LENGTH_SHORT).show();
+            try {
+                if (typ.equals("user")) {
+                    String uid = shr.getvalue("userid").toString();
+                    if(uid!=null) {
+                        Intent intent = new Intent(getApplicationContext(), Udashboard.class);
+                        startActivity(intent);
+                    }
+                } else {
+                    String pid = shr.getvalue("policeid").toString();
+                    if(pid!=null){
+                    Intent intent=new Intent(getApplicationContext(),Pdashboard.class);
+                    startActivity(intent);
+                }
+                }
+            }catch (Exception e){
 
             }
+
+
+
         }catch(Exception e){
             shr=new sharedpref(getApplicationContext());
 
@@ -46,7 +69,6 @@ public class Login extends AppCompatActivity {
 
 
         final ProgressBar p1=(ProgressBar)findViewById(R.id.progressBar);
-        TextView reg=(TextView)findViewById(R.id.link_signup);
         //final String type=bundle.getString("type");
         name=(EditText)findViewById(R.id.MobileNumber);
         pass=(EditText)findViewById(R.id.input_password);
@@ -86,7 +108,7 @@ public class Login extends AppCompatActivity {
                                            String type=ob.getString("type");
                                            String enginenumber=ob.getString("engineno");
                                            String mobile=ob.getString("mobile");
-                                           if (ps.equals(pass.getText().toString())) {
+                                           if (ps.equals(pass.getText().toString())  && type.equals(typ)) {
                                                if(type.equals("admin")){
                                                Intent intent = new Intent(getApplicationContext(), Pdashboard.class);
 
@@ -130,7 +152,7 @@ public class Login extends AppCompatActivity {
 
             }
         });
-        reg.setOnClickListener(new View.OnClickListener() {
+        link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(getApplicationContext(),Register.class);

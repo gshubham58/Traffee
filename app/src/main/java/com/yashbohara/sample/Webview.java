@@ -9,6 +9,7 @@ import android.util.Log;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 public class Webview extends AppCompatActivity {
 
@@ -18,7 +19,7 @@ int amount;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
         sharedpref shr=sharedpref.getSharedPref(getApplicationContext());
-        amount=shr.getvalue("amount");
+        amount=shr.getvalue("fine_amount");
         Log.e("amount",amount+"");
        /* AlertDialog.Builder builder1 = new AlertDialog.Builder(getApplicationContext());
         builder1.setMessage("Amount to be paid "+amount+" Rs");
@@ -54,6 +55,8 @@ int amount;
         webview.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageFinished(WebView view, String url) {
+                Toast.makeText(Webview.this, url, Toast.LENGTH_SHORT).show();
+                Log.e("url",url);
                 if(url.contains("failure")){Intent intent=new Intent(getApplicationContext(),User_Payment_List.class);
                     startActivity(intent);}
                 if(url.contains("success")){Intent intent=new Intent(getApplicationContext(),Udashboard.class);

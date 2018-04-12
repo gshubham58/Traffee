@@ -53,7 +53,7 @@ SimpleDateFormat simpleDateFormat;
 //                progressBar.setVisibility(View.VISIBLE);
                 //save challan in the database
                 RequestQueue queue= Volley.newRequestQueue(Amount.this);
-                String url="https://police-login.herokuapp.com/addpolice/policeid="+shr.getvalue("policed").toString()+"&userid="+shr.getvalue("userid").toString()+"&finetype="+shr.getvalue("type").toString()+"&amount="+fine+"&date="+simpleDateFormat.format(calendar.getTime())+"&mode=offline";
+                String url="https://police-login.herokuapp.com/addpolice/policeid="+shr.getvalue("policeid").toString()+"&userid="+shr.getvalue("fine_user").toString()+"&finetype="+shr.getvalue("type").toString()+"&amount="+fine+"&date="+simpleDateFormat.format(calendar.getTime())+"&mode=offline";
                 Log.e("hh  ",url);
                 final StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                     @Override
@@ -67,6 +67,7 @@ SimpleDateFormat simpleDateFormat;
                                 //progressBar.setVisibility(View.INVISIBLE);
                                 Intent intent=new Intent(getApplicationContext(),OfflineChallan.class);
                                 intent.putExtra("status","f00c");
+                                shr.setvalue("status","f00c");
                                 intent.putExtra("statuscode","Completed");
                                 startActivity(intent);
                             }
@@ -87,10 +88,7 @@ SimpleDateFormat simpleDateFormat;
                     }
                 });
                 queue.add(stringRequest);
-                //challan saved
-
-                Intent intent=new Intent(getApplicationContext(),OfflineChallan.class);
-                startActivity(intent);
+                //challan save
 
             }
         });
@@ -104,7 +102,7 @@ SimpleDateFormat simpleDateFormat;
                 //save challan in the database
                 RequestQueue queue= Volley.newRequestQueue(Amount.this);
                 String type=shr.getvalue("type").toString();
-                String url="https://police-login.herokuapp.com/addpolice/policeid="+shr.getvalue("policeid").toString()+"&userid="+shr.getvalue("userid").toString()+"&finetype="+shr.getvalue("type").toString()+"&amount="+fine+"&date="+simpleDateFormat.format(calendar.getTime())+"&mode=online";
+                String url="https://police-login.herokuapp.com/addpolice/policeid="+shr.getvalue("policeid").toString()+"&userid="+shr.getvalue("fine_user").toString()+"&finetype="+shr.getvalue("type").toString()+"&amount="+fine+"&date="+simpleDateFormat.format(calendar.getTime())+"&mode=online";
                 Log.e("hh  ",url);
                 final StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                     @Override
@@ -115,9 +113,47 @@ SimpleDateFormat simpleDateFormat;
                             String result=obj.getString("status");
                             if(result.equals("success"))
                             {
+
+
+
+//                                RequestQueue queue= Volley.newRequestQueue(Amount.this);
+//                                String url="https://police-login.herokuapp.com/addpolice/policeid="+shr.getvalue("policed").toString();
+//                                Log.e("hh  ",url);
+//                                final StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+//                                    @Override
+//                                    public void onResponse(String response) {
+//                                        try {
+//                                            //JSONArray res=new JSONArray(response);
+//                                            JSONObject obj=new JSONObject(response);
+//                                            //parse json to get latitude and longitude
+//
+//                                            //json parsed
+//                                            //send message
+//
+//                                            //message sent
+//                                        } catch (JSONException e) {
+//                                            e.printStackTrace();
+//                                        }
+//                                    }
+//                                }, new Response.ErrorListener()
+//
+//                                {
+//                                    @Override
+//                                    public void onErrorResponse (VolleyError error){
+//                                        Log.e("error0000", error+"");
+//                                    }
+//                                });
+//                                queue.add(stringRequest);
+                                //challan save
+
+
+
+
+
                                 //progressBar.setVisibility(View.INVISIBLE);
                                 Intent intent=new Intent(getApplicationContext(),OfflineChallan.class);
                                 intent.putExtra("status","&#xf00c");
+                                shr.setvalue("status","&#xf00c");
                                 intent.putExtra("statuscode","Completed");
                                 startActivity(intent);
                             }
@@ -138,12 +174,6 @@ SimpleDateFormat simpleDateFormat;
                     }
                 });
                 queue.add(stringRequest);
-                //challan saved
-
-                Intent intent=new Intent(getApplicationContext(),Online.class);
-                startActivity(intent);
-
-
                 //challan saved
             }
         });

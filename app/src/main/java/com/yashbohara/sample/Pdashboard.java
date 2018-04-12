@@ -173,7 +173,8 @@ public class Pdashboard extends AppCompatActivity {
     }
     public void logout_clicked(View view){
         sharedpref shr=sharedpref.getSharedPref(getApplicationContext());
-        shr.delete("userid");
+        shr.delete("policeid");
+        Toast.makeText(this, "Logout Successful", Toast.LENGTH_SHORT).show();
         Intent i=new Intent(getApplicationContext(),MainActivity.class);
             startActivity(i);
             this.finish();

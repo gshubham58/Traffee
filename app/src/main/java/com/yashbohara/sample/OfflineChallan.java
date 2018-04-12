@@ -7,14 +7,16 @@ import android.widget.TextView;
 
 public class OfflineChallan extends AppCompatActivity {
 TextView offlogo,offstatus;
+sharedpref shr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offline_challan);
+        shr = sharedpref.getSharedPref(getApplicationContext());
         offlogo=(TextView)findViewById(R.id.offstatus);
         offstatus=(TextView)findViewById(R.id.offstatuscode);
 
-       // offlogo.setText(bundle.getString("status"));
+        //offlogo.setText(shr.getvalue("status").toString());
         offstatus.setText("Completed");
     }
     @Override

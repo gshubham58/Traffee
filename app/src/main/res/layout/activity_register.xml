@@ -123,11 +123,11 @@
 
     </LinearLayout>
 
-    <ProgressBar
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:id="@+id/progressBar"
-        android:layout_centerInParent="true"
-        android:visibility="invisible"/>
+        <ProgressBar
+            android:id="@+id/progressBar_register"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" />
     </RelativeLayout>
 </RelativeLayout>

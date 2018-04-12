@@ -7,5 +7,6 @@
         <item>not wearing helmet</item>
         <item>driving by a minor</item>
         <item>driving against one-way</item>
+        <item>no parking</item>
     </string-array>
 </resources>

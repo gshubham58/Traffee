@@ -25,11 +25,13 @@ public class NumberplateText extends AppCompatActivity {
 EditText edtxt;
 Button btn;
 ProgressBar p1;
+sharedpref shr;
 String mob="",usr="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numberplate_text);
+        shr = sharedpref.getSharedPref(getApplicationContext());
         btn=(Button)findViewById(R.id.search);
         edtxt=(EditText)findViewById(R.id.edttxt);
         p1=(ProgressBar)findViewById(R.id.progressBar);
@@ -53,7 +55,6 @@ String mob="",usr="";
                         String result=obj.getString("engine no");
                         Log.e("res  ",result);
                         fun(result);
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                         p1.setVisibility(View.INVISIBLE);
@@ -67,7 +68,7 @@ String mob="",usr="";
                     Log.e("error", ""+error);
                 }
             });
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(10000,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(stringRequest);
@@ -92,8 +93,12 @@ String mob="",usr="";
 
                         Log.e("yoooo", "4");
                         mob = obj.getString("mobile");
+                        shr.setvalue("fine_mobile",mob);
+
+
                         Log.e("yoooo", "5");
                         usr = obj.getString("username");
+                        shr.setvalue("fine_user",usr);
                         Log.e("yooo", mob);
 
                     }
