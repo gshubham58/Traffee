@@ -54,6 +54,7 @@ sharedpref shr;
                     item=new ArrayList<>();
                     amount=new ArrayList<>();
                     ids=new ArrayList<>();
+                    int flag=1;
                     for(int i=0;i<user.length();i++)
                     {
                         JSONObject o1=user.getJSONObject(i);
@@ -61,7 +62,7 @@ sharedpref shr;
                         if(o1.getString("payment status").equals("completed")) {
                             String finetype = o1.getString("finetype");
                             amount.add(o1.getInt("amount"));
-
+                            flag=0;
 //                        Date date= (Date) o1.get("date");
                             int a=o1.getInt("id");
                             item.add(finetype);
@@ -69,8 +70,11 @@ sharedpref shr;
                         }
                         else{
 
-                            Toast.makeText(Reciept.this, "No Receipts found", Toast.LENGTH_SHORT).show();
+
                         }
+                    }
+                    if(flag==1){
+                        Toast.makeText(Reciept.this, "No Receipts available", Toast.LENGTH_SHORT).show();
                     }
 
                     final ListAdapter listAdapter=new custom_reciept(getApplicationContext(),item,amount);

@@ -75,7 +75,7 @@
             android:layout_weight="2"
             android:gravity="center"
             android:onClick="scan_clicked"
-            android:text="Scan"
+            android:text="Impose Fine"
             android:textColor="@color/white" />
 
         <TextView

@@ -36,7 +36,7 @@ public class User_Payment_List extends AppCompatActivity {
 ProgressBar progressBar;
 
 ArrayList<String> item;
-ArrayList<Integer> amount;
+ArrayList<Integer> amount,ids;
     ListView l1;
 sharedpref shr;
     @Override
@@ -58,6 +58,8 @@ sharedpref shr;
                     JSONArray user=obj.getJSONArray(shr.getvalue("userid").toString());
                     item=new ArrayList<>();
                     amount=new ArrayList<>();
+                    ids=new ArrayList<>();
+
                     for(int i=0;i<user.length();i++)
                     {
                         JSONObject o1=user.getJSONObject(i);
@@ -65,7 +67,10 @@ sharedpref shr;
                             String finetype = o1.getString("finetype");
                             amount.add(o1.getInt("amount"));
 //                        Date date= (Date) o1.get("date");
+                            int a=o1.getInt("id");
                             item.add(finetype);
+                            ids.add(a);
+
                         }
                     }
 
@@ -79,6 +84,7 @@ sharedpref shr;
                             Log.e("amount",cost+""+"bb"+adapterView.getItemAtPosition(position));
                             String temp=item.get(position);
                             shr.setvalue("fine_amount",cost);
+                            shr.setvalue("position",ids.get(position));
                             if(temp.equals("not having registration card")){
 //                                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
 //                                        Uri.parse("http://maps.google.com/maps?saddr=20.344,34.34&daddr=20.5666,45.345"));
