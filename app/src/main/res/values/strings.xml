@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sample</string>
+    <string name="app_name">Traffee</string>
     <string name="title_activity_pdashboard">Pdashboard</string>
     <string-array name="fine">
         <item>not having driving license</item>
